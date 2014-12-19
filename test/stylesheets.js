@@ -12,9 +12,12 @@ describe("stylesheets", function(){
       poly.render("main.less", function(error, body){
         should.not.exist(error)
         body.should.include("background:#ffc0cb")
+        body.should.include("-webkit-font-feature-settings")
         done()
       })
     })
+
+
 
   })
 
@@ -28,6 +31,7 @@ describe("stylesheets", function(){
         should.not.exist(error)
         should.exist(body)
         body.should.include("background:#ffc0cb")
+        body.should.include("-webkit-font-feature-settings")
         done()
       })
     })
@@ -46,7 +50,28 @@ describe("stylesheets", function(){
         should.not.exist(error)
         should.exist(body)
         body.should.include("background:#ffc3cd")
-        body.should.include("color:#000000")
+        body.should.include("color:#000")
+        body.should.include("-webkit-font-feature-settings")
+        done()
+      })
+    })
+
+  })
+
+  describe(".sass", function(){
+
+    var root = __dirname + '/fixtures/stylesheets/sass'
+    var poly = polymer.root(root)
+
+    console.log(root);
+
+    it("should have basic css file", function(done){
+      poly.render("main.sass", function(error, body){
+        should.not.exist(error)
+        should.exist(body)
+        body.should.include("background:#ffc3cd")
+        body.should.include("color:#000")
+        body.should.include("-webkit-font-feature-settings")
         done()
       })
     })
